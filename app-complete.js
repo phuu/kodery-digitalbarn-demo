@@ -1,10 +1,22 @@
 var koderyUrl = function (token, path) {
-  return '';
+  return 'http://api.kodery.com' + path + '?access_token=' + token;
 };
 
 var getFromKodery = function (token, cb) {
 
   var makeUrl = koderyUrl.bind(null, token);
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    var data;
+    try {
+      data = JSON.parse(this.responseText);
+    } catch (e) {
+      return cb(new Error("Could not parse JSON."));
+    }
+    return cb(null, data);
+  };
+  xhr.open("get", makeUrl('/me/categories'), true);
+  xhr.send();
 
 };
 
@@ -45,8 +57,15 @@ document.addEventListener('DOMContentLoaded', function () {
   /**
    * Authentication
    */
+  var hash = window.location.hash;
+  // Grab the access_token
+  var match;
+  var token = '';
+  if (match = hash.match(/access_token=([a-z0-9]+)&/)) token = match[1];
 
-  // Some stuff here...
+  if (token) {
+    $('.js-login').parentNode.removeChild($('.js-login'));
+  }
 
   /**
    * Data
@@ -85,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return matched;
     };
   };
+
 
   var searchCat = function (str) {
     return function (matched, data) {

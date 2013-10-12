@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf8">
+<title>Digital Barn Demo</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<header>
+  <h1>kode search</h1>
+  <input type="search" class="js-search-input">
+  <a class="js-login" href="http://account.kodery.com/dialog/authorize?response_type=token&client_id=9d2409d7b1edf258f0e7de732391c7749596965a&redirect_uri=http://db-demo/">Login with Kodery</a>
+</header>
+
+<div class="search">
+  <ul class="js-snippets"></ul>
+</div>
+
+<script type="text/template" id="template-snippet">
+  <li class="snippet">
+    <h3>{{name}}</h3>
+    <p>{{description}}</p>
+    <ul class="fragments">
+      {{{renderedFragments}}}
+    </ul>
+  </li>
+</script>
+<script type="text/template" id="template-fragment">
+  <li class="fragment">
+    <strong>{{name}}</strong>
+    <em>{{language}}</em>
+    <pre>{{body}}</pre>
+  </li>
+</script>
+<script src="app.js"></script>
