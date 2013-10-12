@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 17px/1.5 "Open Sans";
+}
+
+h1 {
+  font-size: 1em;
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+}
+
+pre {
+  font-size: 0.8em;
+  line-height: 1.2;
+  background: #efefef;
+  padding: 0.5em;
+  overflow-x: scroll;
+}
+
+ul {
+  list-style: none;
+
+  padding: 0;
+}
